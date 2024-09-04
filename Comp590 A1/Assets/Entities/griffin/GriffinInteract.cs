@@ -6,7 +6,6 @@ using UnityEngine.Playables;
 
 public class GriffinInteract : InteractableObject
 {
-    private int questStage = 0;
     public override string GetInteractionDescription(InteractionController source)
     {
         return "Talk to Griffin";
@@ -14,8 +13,7 @@ public class GriffinInteract : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        
-
+        FlyCharacterToPlatform();
     }
 
     [SerializeField] GameObject middleField;
@@ -43,35 +41,5 @@ public class GriffinInteract : InteractableObject
             player.GetComponent<FirstPersonController>().useGravity = true;
             playerCarrier.GetComponent<Transform>().localPosition = Vector3.zero;
         }
-    }
-
-    public void ProgressQuest()
-    {
-        questStage++;
-        if (questStage == 3)
-        {
-            middleField.SetActive(true);
-        }
-        else if (questStage == 5)
-        {
-            rightField.SetActive(true);
-        }
-        else if (questStage == 7)
-        {
-            FlyCharacterToPlatform();
-        }
-        else if (questStage == 9)
-        {
-            player.GetComponent<FirstPersonController>().playerCanFly = true;
-        }
-        else if (questStage == 11)
-        {
-            player.GetComponentInChildren<FadeCanvas>().FadeToScene("SampleScene");
-        }
-    }
-
-    public int getQuestStage()
-    {
-        return questStage;
     }
 }
