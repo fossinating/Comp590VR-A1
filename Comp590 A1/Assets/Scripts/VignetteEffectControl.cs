@@ -29,11 +29,11 @@ public class VignetteEffectControl : MonoBehaviour
     {
         if (vignette != null)
         {
-            // Check if the 'P' key is pressed
+            /*// Check if the 'P' key is pressed
             if (Input.GetKeyDown(KeyCode.P))
             {
                 fading = !fading;
-            }
+            }*/
             // Modify vignette intensity dynamically
             vignette.intensity.value = Mathf.Lerp(vignette.intensity.value, fading ? 1.0f : 0.0f, Time.deltaTime*speed);
         }

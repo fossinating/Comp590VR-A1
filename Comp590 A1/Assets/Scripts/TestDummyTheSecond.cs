@@ -15,12 +15,7 @@ public class TestDummyTheSecond : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        source.GetComponentInParent<DialogController>().PlayDialog(
-            new DialogChoiceNode("Testing Dummy The Second", "Welcome to the higher plane! I take it you met my predecessor on the lower plane, would you like to go back?", new DialogOption[]{
-                new DialogOption("Sure!", new DialogMessageNode("Testing Dummy The Second", "Sorry to lose you, but I'll send you back now", "FlyCharacterToPlatform", gameObject)),
-                new DialogOption("No", new DialogEndNode("Testing Dummy The Second", "Smart decision, you can stick with me for now, but come back if you change your mind!"))
-            }
-            ));
+        
     }
 
     private Transform playerOldParent;

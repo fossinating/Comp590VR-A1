@@ -18,7 +18,7 @@ public class BookSlot : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        if (properItemInPlace)
+        /*if (properItemInPlace)
         {
             source.setHand(properItem.GetComponent<InteractableObject>());
             properItemInPlace = false;
@@ -38,7 +38,7 @@ public class BookSlot : InteractableObject
                 source.setHand(null);
                 properItemInPlace = true;
             }
-        }
+        }*/
         
     }
 }

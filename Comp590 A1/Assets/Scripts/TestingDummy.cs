@@ -15,12 +15,7 @@ public class TestingDummy : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        source.GetComponentInParent<DialogController>().PlayDialog(
-            new DialogChoiceNode("Testing Dummy", "Hello there! Would you like to get to that platform over there?", new DialogOption[]{
-                new DialogOption("Of course!", new DialogMessageNode("Testing Dummy", "Glad to hear it, I'll fly you over there now", "FlyCharacterToPlatform", gameObject)),
-                new DialogOption("No", new DialogEndNode("Testing Dummy", "Oh. That's a shame, but come back if you ever change your mind!"))
-            }
-            ));
+        
     }
 
     private Transform playerOldParent;

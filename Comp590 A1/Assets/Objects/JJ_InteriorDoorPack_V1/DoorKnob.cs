@@ -11,9 +11,6 @@ public class DoorKnob : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        if (source != null)
-        {
-            source.setSubtitle("It's pretty late, I should be staying in my room.", 8);
-        }
+        
     }
 }

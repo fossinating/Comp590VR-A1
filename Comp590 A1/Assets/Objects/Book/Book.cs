@@ -12,6 +12,6 @@ public class Book : InteractableObject
 
     public override void Interact(InteractionController source)
     {
-        source.setHand(this);
+        //source.setHand(this);
     }
 }
