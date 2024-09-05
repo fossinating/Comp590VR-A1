@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/First Dream.unity
-    guid: cfb673424387a83488e8ebb3e2091d2c
+    path: Assets/Scenes/Main Scene.unity
+    guid: 2641c07cf2883534d90fd74f1ae22bc3
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: fb35e2e0b405c244f9d7a0a8c551c611, type: 2}
