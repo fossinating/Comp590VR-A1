@@ -8,7 +8,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] SphericEnemy enemyPrefab;
     float timeLeft;
     float waitTime = 10.0f;
-    float radius = 10f;
 
     // Start is called before the first frame update
     void Start()
