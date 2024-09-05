@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class SphericEnemy : MonoBehaviour
@@ -15,12 +14,6 @@ public class SphericEnemy : MonoBehaviour
     void Start()
     {
         float randAngle = Random.Range(0, 2 * Mathf.PI);
-        Debug.Log(
-            radius + ", " +
-            Mathf.Sin(randAngle) + ", " +
-            radius * Mathf.Sin(randAngle) + ", " +
-            0 + ", " +
-            radius * Mathf.Cos(randAngle));
         transform.position = new Vector3(
             radius * Mathf.Sin(randAngle),
             0,

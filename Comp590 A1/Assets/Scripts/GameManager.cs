@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.EnhancedTouch;
 using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
@@ -35,6 +37,7 @@ public class GameManager : MonoBehaviour
             startHighScoreLabel.text = "High Score: " + highscore.ToString();
         }
         UpdateStatus();
+        EnhancedTouchSupport.Enable();
     }
 
     void UpdateStatus() {
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     void StartGame()
     {
+        Debug.Log("Starting game!");
         playerHealth = 3;
         score = 0;
         playing = true;
@@ -53,6 +57,7 @@ public class GameManager : MonoBehaviour
         }
         UpdateStatus();
         statusLabel.enabled = true;
+        startScreen.enabled = false;
     }
 
     public void DamagePlayer()
@@ -91,6 +96,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private bool wasPressed = false;
+
     void FixedUpdate()
     {
         if (playing)
@@ -104,15 +111,11 @@ public class GameManager : MonoBehaviour
             }
         } else
         {
-            // Source: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.10/api/UnityEngine.InputSystem.EnhancedTouch.Touch.html
-            foreach (var touch in UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches)
+            if (!wasPressed && Touchscreen.current.press.isPressed)
             {
-                if (touch.began)
-                {
-                    StartGame();
-                    break;
-                }
+                StartGame();
             }
+            wasPressed = Touchscreen.current.press.isPressed;
         }
     }
 }
