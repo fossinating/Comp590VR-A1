@@ -19,7 +19,8 @@ public class Destructible : MonoBehaviour
 
     public void Hit()
     {
-        transform.parent.GetComponentInChildren<GameManager>().AddPoints(pointValue);
         Destroy(gameObject);
+        GameObject.Find("Enemy Spawner").GetComponent<GameManager>().AddPoints(pointValue);
+        pointValue = 0;
     }
 }

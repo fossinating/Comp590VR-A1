@@ -21,12 +21,14 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] Text statusLabel;
 
+    [SerializeField] Canvas hud;
     [SerializeField] Canvas startScreen;
     [SerializeField] Canvas deathScreen;
 
     [SerializeField] public SphericEnemy enemyPrefab;
     private float timeLeft;
-    private float waitTime = 30f;
+    private float waitTime = 7f;
+    private float waitTimeReduce = .1f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,7 +43,7 @@ public class GameManager : MonoBehaviour
     }
 
     void UpdateStatus() {
-        statusLabel.text = "Score: " + score.ToString() + "\n" + new StringBuilder().Insert(0, "❤️", playerHealth).ToString();
+        statusLabel.text = "Score: " + score.ToString() + "\nHealth: " + playerHealth.ToString();
     }
 
 
@@ -56,14 +58,16 @@ public class GameManager : MonoBehaviour
             e.Kill();
         }
         UpdateStatus();
-        statusLabel.enabled = true;
-        startScreen.enabled = false;
+        hud.gameObject.SetActive(true);
+        startScreen.gameObject.SetActive(false);
+        deathScreen.gameObject.SetActive(false);
     }
 
     public void DamagePlayer()
     {
         playerHealth -= 1;
         UpdateStatus();
+        Debug.Log("Health is now " + playerHealth);
         if (playerHealth <= 0) {
             GameOver();
         }
@@ -77,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     void GameOver()
     {
+        Debug.Log("Game Over");
         playing = false;
         if (score > highscore)
         {
@@ -85,8 +90,8 @@ public class GameManager : MonoBehaviour
             PlayerPrefs.Save();
         }
 
-        statusLabel.enabled = false;
-        deathScreen.enabled = true;
+        hud.gameObject.SetActive(false);
+        deathScreen.gameObject.SetActive(true);
         deathHighScoreLabel.text = "High Score: " + highscore.ToString();
         deathScoreLabel.text = "Score: " + score.ToString();
 
@@ -106,7 +111,7 @@ public class GameManager : MonoBehaviour
             if (timeLeft < 0)
             {
                 SphericEnemy enemy = Instantiate(enemyPrefab);
-                waitTime = Mathf.Max(1f, waitTime - .3f);
+                waitTime = Mathf.Max(1f, waitTime - waitTimeReduce);
                 timeLeft = waitTime;
             }
         } else

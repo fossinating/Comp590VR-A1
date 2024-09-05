@@ -16,11 +16,20 @@ public class ProximityDamage : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.GetComponent<SphericEnemy>())
+        if (other == null)
         {
-            GetComponentInParent<GameManager>().DamagePlayer();
+            return;
+        }
+        if (other.gameObject.GetComponentInParent<SphericEnemy>())
+        {
+            if (other.gameObject == null || other.gameObject.transform == null || other.gameObject.transform.parent == null || other.gameObject.transform.parent.gameObject == null)
+            {
+                return;
+            }
+            transform.parent.parent.GetComponentInChildren<GameManager>().DamagePlayer();
+            Destroy(other.gameObject.transform.parent.gameObject);
         }
     }
 }

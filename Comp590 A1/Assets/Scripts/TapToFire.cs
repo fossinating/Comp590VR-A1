@@ -36,7 +36,7 @@ public class Fire : MonoBehaviour
     {
         GlowingProjectile projectile = Instantiate(projectilePrefab);
         projectile.transform.localPosition = transform.position;
-        projectile.transform.rotation = transform.rotation;
+        projectile.transform.rotation = Quaternion.AngleAxis(90, transform.right) * transform.rotation;
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
         projectileRb.AddForce(Camera.main.transform.forward * Random.Range(minProjectileSpeed, maxProjectileSpeed));
     }
