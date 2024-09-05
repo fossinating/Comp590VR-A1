@@ -19,6 +19,9 @@ public class Fire : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!transform.parent.GetComponentInChildren<GameManager>().playing) {
+            return;
+        }
         // Source: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.10/api/UnityEngine.InputSystem.EnhancedTouch.Touch.html
         foreach (var touch in UnityEngine.InputSystem.EnhancedTouch.Touch.activeTouches)
         {

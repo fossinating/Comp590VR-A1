@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Destructible : MonoBehaviour
 {
+    [SerializeField] public int pointValue = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class Destructible : MonoBehaviour
 
     public void Hit()
     {
+        transform.parent.GetComponentInChildren<GameManager>().AddPoints(pointValue);
         Destroy(gameObject);
     }
 }

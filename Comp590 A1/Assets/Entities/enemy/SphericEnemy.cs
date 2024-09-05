@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting.ReorderableList;
 using UnityEngine;
 
 public class SphericEnemy : MonoBehaviour
@@ -9,6 +10,7 @@ public class SphericEnemy : MonoBehaviour
     private float xAngle;
     private float angle;
     private const float speed = 3f;
+    private bool shouldMove = true;
 
     void Start()
     {
@@ -29,6 +31,7 @@ public class SphericEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!shouldMove) return;
         xAngle += speed / radius * Time.fixedDeltaTime;
 
         float h = radius * Mathf.Cos(xAngle);
@@ -39,5 +42,15 @@ public class SphericEnemy : MonoBehaviour
             h * Mathf.Sin(angle));
 
         transform.up = transform.position.normalized;
+    }
+
+    public void Stop()
+    {
+        shouldMove = false;
+    }
+
+    public void Kill()
+    {
+        Destroy(gameObject);
     }
 }
