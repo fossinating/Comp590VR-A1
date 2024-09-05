@@ -28,13 +28,13 @@ public class GriffinInteract : InteractableObject
     {
         playerOldParent = player.transform.parent;
         player.transform.parent = playerCarrier.transform;
-        GetComponent<PlayableDirector>().Play();
+        GetComponentInChildren<PlayableDirector>().Play();
         player.GetComponent<FirstPersonController>().useGravity = false;
     }
 
     override public void Update()
     {
-        if (playerOldParent != null && GetComponent<PlayableDirector>().state != PlayState.Playing)
+        if (playerOldParent != null && GetComponentInChildren<PlayableDirector>().state != PlayState.Playing)
         {
             player.transform.parent = playerOldParent;
             playerOldParent = null;
