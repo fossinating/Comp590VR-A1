@@ -14,7 +14,6 @@ public class SphericEnemy : MonoBehaviour
     void Start()
     {
         float randAngle = Random.Range(0, 2 * Mathf.PI);
-        randAngle = 0f;
         transform.position = new Vector3(
             radius * Mathf.Sin(randAngle),
             0,
